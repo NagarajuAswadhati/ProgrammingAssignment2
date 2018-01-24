@@ -3,11 +3,11 @@
 
 ## Write a short comment describing this function
 
-The below function, creates a matrix, which is really a list containing a function to
-set the value of the matrix
-get the value of the matrix
-set the value of the matrix inverse
-get the value of the matrix inverse
+# The below function, creates a matrix, which is really a list containing a function to
+# set the value of the matrix
+# get the value of the matrix
+# set the value of the matrix inverse
+# get the value of the matrix inverse
 
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
@@ -41,7 +41,7 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
 
-  m <- x$getinverse()
+  inv <- x$getinverse()
   
   if(!is.null(inv)) {
     message("getting cached data")
@@ -49,7 +49,13 @@ cacheSolve <- function(x, ...) {
   }
   
   data <- x$get()
-  m <- solve(data, ...)
-  x$setinverse(m)
+  inv <- solve(data, ...)
+  x$setinverse(inv)
   inv
 }
+
+# Try with square matrix
+x <- rbind(c(1, 2, 3), c(0.5, 6, 9.9), c(0.5, 0.1, 4))
+mat <- makeCacheMatrix(x)
+cacheSolve(mat)
+
